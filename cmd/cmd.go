@@ -56,6 +56,7 @@ func New() *Cmd {
 	app.CommandNotFound = func(c *cli.Context, command string) {
 		fmt.Fprintf(c.App.Writer, "Thar be no %q here.\n", command)
 	}
+
 	app.Action = func(c *cli.Context) error {
 		cli.HandleExitCoder(errors.New("not an exit coder, though"))
 		//cli.ShowAppHelp(c)
