@@ -1,8 +1,11 @@
 package main
 
-import "WeDrop/cmd"
+import (
+	"WeDrop/cmd"
+)
 
 func main() {
 	app := cmd.New()
 	app.RunAndExitOnError()
+
 }
