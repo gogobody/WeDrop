@@ -1,14 +1,17 @@
 package router
 
-import "github.com/kataras/iris"
+import (
+	"WeDrop/server/api/common"
+	"github.com/kataras/iris"
+)
 
 func CommonRoutes(party iris.Party) {
-	common := party.Party("/common")
+	commonroute := party.Party("/common")
 	{
-		loadConfig(common)
+		loadConfig(commonroute)
 	}
 }
 
 func loadConfig(party iris.Party) {
-	party.Post("/loadconfig")
+	party.Post("/loadconfig", common.LoadConfig)
 }

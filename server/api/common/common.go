@@ -1,7 +1,12 @@
 package common
 
-import "github.com/kataras/iris"
+import (
+	"WeDrop/config"
+	"WeDrop/server/api"
+	"github.com/kataras/iris"
+)
 
-func LoadConfig(ctx *iris.Context) {
-
+func LoadConfig(ctx iris.Context) {
+	conf := config.Get()
+	api.Success(ctx, "", conf)
 }
