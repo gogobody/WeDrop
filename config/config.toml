@@ -1,2 +1,12 @@
-MaxSize = 32 <<20
-UploadPath = "/uploads"
+# This is a TOML document. Boom.
+title = "TOML Example"
+
+[common]
+appName = "WeDrop"
+host = "127.0.0.1"
+port = "8080"
+
+[upload]
+MaxSize = 32  #单位MB
+UploadPath = "uploads"
+

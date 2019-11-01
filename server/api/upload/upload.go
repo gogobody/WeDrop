@@ -21,8 +21,8 @@ func Uploadfile(ctx iris.Context) {
 
 	// Create a file with the same name
 	// assuming that you have a folder named 'uploads'
-	println(config.Get().UploadPath + fname)
-	out, err := os.OpenFile(config.Get().UploadPath+fname,
+	println(config.Get().Upload.UploadPath + "/" + fname)
+	out, err := os.OpenFile(config.Get().Upload.UploadPath+"/"+fname,
 		os.O_WRONLY|os.O_CREATE, 0666)
 	if err != nil {
 		ctx.StatusCode(iris.StatusInternalServerError)
