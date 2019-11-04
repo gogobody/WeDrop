@@ -59,6 +59,7 @@ func saveUploadedFile(fh *multipart.FileHeader, destDirectory string) (int64, er
 	return io.Copy(out, src)
 }
 
+//modify the save file
 func beforeSave(ctx iris.Context, file *multipart.FileHeader) {
 	ip := ctx.RemoteAddr()
 	// make sure you format the ip in a way
