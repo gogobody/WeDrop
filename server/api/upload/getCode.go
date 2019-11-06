@@ -20,7 +20,7 @@ func GetCode(ctx iris.Context) {
 	//code: 106617
 	//host: "airportal-cn-north.oss-cn-beijing.aliyuncs.com"
 	//key: "NXHN01LjL4"
-	//policy: "eyJleHBpcmF0aW9uIjoiMjAxOS0xMS0wNFQxOTozMzowOFoiLCJjb25kaXRpb25zIjpbWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsMCwxMDQ4NTc2MDAwXV19"
+	//policy: "asdasas"
 	//signature: "+hudiZVsbIBsCpogeAz4f3NLzfk="
 	res := iris.Map{
 		"accessid":  123,   //OSSAccessKeyId

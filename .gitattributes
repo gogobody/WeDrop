@@ -1,0 +1,3 @@
+secretfile filter=git-crypt diff=git-crypt
+*.key filter=git-crypt diff=git-crypt
+config/config.toml filter=git-crypt diff=git-crypt
