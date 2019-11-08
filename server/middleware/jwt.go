@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"WeDrop/config"
 	"github.com/dgrijalva/jwt-go"
 	//"github.com/dgrijalva/jwt-go"
 	jwtmiddleware "github.com/iris-contrib/middleware/jwt"
@@ -9,10 +10,10 @@ import (
 	"time"
 )
 
-var mySecret = []byte("My Secret")
+var mySecret = []byte(config.Get().Upload.UploadSecret)
 
 func jwtMiddle(ctx iris.Context) {
-
+	println(ctx.Request().Header)
 	// 页面无需验证
 	if skipJWT(ctx.Path()) {
 		ctx.Next()
@@ -30,6 +31,7 @@ func jwtMiddle(ctx iris.Context) {
 
 	// jwt 验证
 	if err := jwtHandler.CheckJWT(ctx); err != nil {
+		println("err")
 		ctx.StopExecution()
 		return
 	}
@@ -40,7 +42,7 @@ func jwtMiddle(ctx iris.Context) {
 // 跳过jwt的链接
 func skipJWT(path string) bool {
 	urls := []string{
-		"",
+		"/api/common/loadconfig",
 	}
 	for _, v := range urls {
 		if v == path || strings.Contains(path, "debug") {
@@ -51,10 +53,11 @@ func skipJWT(path string) bool {
 }
 
 // CreateToken 新建一个Token
-func CreateToken(userID uint) (string, error) {
+func CreateToken() (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"end":   time.Now().Unix() + 3600*24*15,
 		"start": time.Now().Unix(),
+		"exp":   time.Now().Add(time.Hour * 2).Unix(), // 添加过期时间为2个小时
 	})
 
 	// Sign and get the complete encoded token as a string using the secret

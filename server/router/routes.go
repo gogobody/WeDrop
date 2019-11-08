@@ -1,11 +1,25 @@
 package router
 
-import "github.com/kataras/iris"
+import (
+	"github.com/kataras/iris"
+)
 
 func Routes(app *iris.Application) {
-	v1 := app.Party("/v1")
+
+	common := app.Party("/")
 	{
-		UploadRoutes(v1)
-		CommonRoutes(v1)
+		common.Options("*", func(ctx iris.Context) {
+			ctx.Next()
+		})
+		api := common.Party("/api")
+		{
+			CommonRoutes(api)
+		}
+
+		v1 := api.Party("/v1")
+		{
+			UploadRoutes(v1)
+		}
 	}
+
 }

@@ -8,17 +8,27 @@ import (
 type Config struct {
 	Common commonInfo
 	Upload uploadInfo
+	Aliyun aliyunOss
 }
 
 type commonInfo struct {
-	AppName string //"app name"`
-	Host    string //"backend host"`
-	Port    string //"backend port"`
+	AppName    string //"app name"`
+	Host       string //"backend host"`
+	Port       string //"backend port"`
+	ApiVersion string
 }
 
 type uploadInfo struct {
-	MaxSize    int64  //"allowed max file size"`
-	UploadPath string //"upload file path"`
+	MaxSize      int64  //"allowed max file size"`
+	UploadPath   string //"upload file path"`
+	UploadSecret string
+}
+
+type aliyunOss struct {
+	Endpoint        string
+	accessKeyId     string
+	accessKeySecret string
+	bucketName      string
 }
 
 var conf Config

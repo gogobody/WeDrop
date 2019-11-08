@@ -6,7 +6,7 @@ import (
 )
 
 //allowed max file size
-var maxSize = config.Get().MaxSize
+var maxSize = config.Get().Upload.MaxSize
 
 func sizeLimiter(ctx iris.Context) {
 	if ctx.GetContentLength() > maxSize {

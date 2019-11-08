@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="随时随地跨设备传输文件。">
+		<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1">
+		<title>AirPortal丨空投</title>
+		<link rel="stylesheet" href="styles/airportal.css">
+		<link rel="canonical" href="https://airportal.cn/">
+		<link rel="apple-touch-icon" href="https://cdn.jsdelivr.net/gh/rthsoftware/airportal/images/apple-touch-icon.png">
+	</head>
+	<body>
+		<div class="logoBox"></div>
+		<div class="mainBox" id="mainBox">
+			<button class="btnMain send" id="send">发送</button>
+			<button class="btnMain" id="receive">接收</button>
+		</div>
+		<span id="menuIcon"></span>
+		<div id="mask"></div>
+		<div id="menu">
+			<a class="menuItem" id="menuItemLogin">登录</a>
+			<a class="menuItem" id="menuItemHistory">历史记录</a>
+			<a class="menuItem" id="menuItemSettings">设置</a>
+			<a class="menuItem" id="menuItemFeedback">获取帮助</a>
+			<span class="menuLine" id="menuLine0"></span>
+			<a class="menuItem" id="menuItemSelectServer"><span id="nameSelectServer">选择服务器</span><span class="menuMore"></span></a>
+			<span id="menuServers"></span>
+		</div>
+		<footer id="footerL"><span id="txtVer">备案</span>丨<a class="link1" id="privacyPolicy" href="https://rthsoftware.cn/privacy" target="_blank" rel="noopener">隐私政策</a></footer>
+		<footer id="footerR"> <a class="link1" href="" target="_blank" rel="noopener">关于</a> 丨 <a class="link1" href="" target="_blank" rel="noopener">github</a> </footer>
+		<input id="inputFile" type="file" webkitdirectory>
+		<script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/rthsoftware/toolbox/js/md5.min.js"></script>
+		<script src="https://cdn.bootcss.com/plupload/2.3.6/plupload.full.min.js"></script>
+		
+		<!--<script src="./js/airportal.js"></script>-->
+		<script src="js/main.js"></script>
+		<script src="./js/config.js"></script>
+		
+	</body>
+</html>
