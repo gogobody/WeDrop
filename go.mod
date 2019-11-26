@@ -7,7 +7,7 @@ require (
 	github.com/CloudyKit/fastprinter v0.0.0-20170127035650-74b38d55f37a // indirect
 	github.com/ajg/form v1.5.1 // indirect
 	github.com/aliyun/aliyun-oss-go-sdk v2.0.3+incompatible // indirect
-	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fasthttp-contrib/websocket v0.0.0-20160511215533-1f3b11f56072 // indirect
 	github.com/google/go-querystring v1.0.0 // indirect
 	github.com/imkira/go-interpol v1.1.0 // indirect

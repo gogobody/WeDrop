@@ -3,6 +3,8 @@ package upload
 import (
 	"WeDrop/config"
 	"WeDrop/server/api"
+	"WeDrop/server/core/meta"
+	"WeDrop/server/util"
 	"fmt"
 	"github.com/kataras/iris"
 	"io"
@@ -31,6 +33,7 @@ func Uploadfile(ctx iris.Context) {
 		beforeSave(ctx, file) //do something before file upload
 
 		_, err = saveUploadedFile(file, config.Get().Upload.UploadPath)
+
 		if err != nil {
 			failures++
 			api.Error(ctx, -1, err.Error(), "failed to upload: "+file.Filename)
@@ -49,15 +52,27 @@ func saveUploadedFile(fh *multipart.FileHeader, destDirectory string) (int64, er
 		return 0, err
 	}
 	defer src.Close()
-
-	out, err := os.OpenFile(filepath.Join(destDirectory, fh.Filename),
+	desDir := filepath.Join(destDirectory, fh.Filename)
+	out, err := os.OpenFile(desDir,
 		os.O_WRONLY|os.O_CREATE, os.FileMode(0666))
 	if err != nil {
 		return 0, err
 	}
-	defer out.Close()
 
-	return io.Copy(out, src)
+	defer out.Close()
+	written, err := io.Copy(out, src)
+	//record the file metadata
+	filemeta := meta.FileMeta{
+		FileName: fh.Filename,
+		Location: desDir,
+		UploadAt: time.Now().Format("2006-01-02 15:04:05"),
+	}
+	filemeta.FileSize = written
+	out.Seek(0, 0)
+	filemeta.FileSha1 = util.FileSha1(out)
+	meta.UpdateFileMeta(filemeta)
+
+	return written, err
 }
 
 //modify the save file

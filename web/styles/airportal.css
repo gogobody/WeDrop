@@ -1,0 +1,888 @@
+html {
+	height: 100%;
+}
+body {
+	background-color: rgb(250,250,250);
+	margin: 0px;
+	max-width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	font-family: PingFangSC-Light,"Microsoft Yahei Light","Microsoft Yahei",Helvetica,sans-serif;
+	cursor: default;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	user-select: none;
+}
+* {
+	outline: none;
+}
+.logoBox {
+	position: absolute;
+	width: 350px;
+	height: 200px;
+	left: 50%;
+	margin-left: -175px;
+	top: 50%;
+	margin-top: -200px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(https://cdn.jsdelivr.net/gh/rthsoftware/airportal/images/mainLogo.png);
+}
+.mainBox {
+	position: absolute;
+	top: 60%;
+	width: 100%;
+	transition: all 0.25s;
+}
+.btnMain {
+	padding: 15px 10px;
+	margin: 0px calc(50% - 112px) 20px calc(50% - 112px);
+	border-radius: 30px;
+	text-decoration: none;
+	cursor: pointer;
+	display: block;
+	transition: color 0.25s, background-color 0.25s, opacity 0.25s, box-shadow 0.25s;
+	width: 224px;
+}
+.send {
+	border: none;
+	color: white;
+	background-color: rgb(65,145,245);
+	background-position: -500px;
+	background-repeat: no-repeat;
+	box-shadow: rgba(65,145,245,0.3) 0px 5px 20px;
+	transition: color 0.25s, background-color 0.25s, opacity 0.25s, box-shadow 0.25s, background-position 1.5s;
+}
+.send:hover {
+	box-shadow: rgba(65,145,245,0.5) 0px 5px 30px;
+}
+.send:active,
+.send-active {
+	color: rgb(65,145,245);
+	background-color: white;
+	box-shadow: rgba(65,145,245,0.3) 0px 5px 30px;
+}
+#receive {
+	border: none;
+	color: rgb(65,145,245);
+	background-color: white;
+	box-shadow: rgba(65,145,245,0.2) 0px 5px 20px;
+}
+#receive:hover {
+	box-shadow: rgba(65,145,245,0.3) 0px 5px 30px;
+}
+#receive:active {
+	color: white;
+	background-color: rgb(65,145,245);
+	box-shadow: rgba(65,145,245,0.5) 0px 5px 30px;
+}
+#menuIcon {
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	width: 25px;
+	height: 2px;
+	padding: 6px 0;
+	border-top: 2px solid rgb(65,145,245);
+	border-bottom: 2px solid rgb(65,145,245);
+	background-color: rgb(65,145,245);
+	background-clip: content-box;
+	transition: all 0.25s;
+	cursor: pointer;
+}
+#menuIcon:hover {
+	border-color: #A5C220;
+	background-color: #A5C220;
+}
+#menuIcon:active {
+	border-color: rgba(65,145,245,0.8);
+	background-color: rgba(65,145,245,0.8);
+}
+#mask {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+#menu {
+	position: absolute;
+	z-index: 101;
+	top: 10px;
+	right: 10px;
+	max-height: calc(100% - 50px);
+	min-width: 160px;
+	padding-top: 15px;
+	padding-bottom: 13px;
+	background-color: white;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: rgba(0,0,0,0.1) 0px 5px 35px;
+	transition: all 0.25s;
+	opacity: 0;
+	overflow: auto;
+	display: none;
+}
+.menuItem {
+	display: block;
+	padding-left: 40px;
+	padding-right: 40px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	font-size: 12px;
+	color: rgba(0,0,0,0.6);
+	transition: all 0.25s;
+	cursor: pointer;
+}
+.menuItem:hover {
+	color: white;
+	background-color: rgb(65,145,245);
+}
+.menuItem:hover > .tick::before {
+	color: white;
+}
+.menuItem:hover > .menuMore {
+	border-color: rgba(255,255,255,0.5);
+}
+.menuItem p {
+	line-height: 0;
+	font-size: 10px;
+	color: rgb(65,145,245);
+	transition: all 0.25s;
+}
+.menuItem:hover > p {
+	color: white;
+}
+.tick {
+	opacity: 0;
+	position: relative;
+}
+.tick::before {
+	content: '';
+	position: absolute;
+	width: 8px;
+	height: 16px;
+	color: rgb(65,145,245);
+	border-bottom: 2px solid;
+	border-right: 2px solid;
+	left: -15px;
+	top: 2px;
+	transform-origin: center;
+	transform: translate(-50%, -30%) rotate(45deg);
+	transition: all 0.25s;
+}
+.menuLine {
+	display: block;
+	width: 100%;
+	height: 1px;
+	background-color: rgba(0,0,0,0.07);
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.menuMore {
+	position: absolute;
+	right: 15px;
+	margin-top: 3.5px;
+	border-right: 2px solid rgba(0,0,0,0.2);
+	border-top: 2px solid rgba(0,0,0,0.2);
+	height: 8px;
+	width: 8px;
+	transform: rotate(45deg);
+	cursor: pointer;
+	transition: all 0.25s;
+}
+#menuServers {
+	transition: all 0.5s;
+	margin-left: 200%;
+}
+.popUp {
+	position: absolute;
+	width: 500px;
+	height: 350px;
+	top: 50%;
+	margin-top: -200px;
+	opacity: 0;
+	left: 50%;
+	margin-left: -250px;
+	padding-top: 40px;
+	background-color: white;
+	text-align: center;
+	font-size: small;
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: rgba(0,0,0,0.05) 0px 10px 20px;
+	transition: all 0.25s;
+}
+.popUp iframe{
+	border: none;
+	height: calc(100% - 40px);
+	width: 100%;
+}
+.p1 {
+	font-size: 18px;
+}
+.p2,.p4 {
+	position: relative;
+	text-align: left;
+	line-height: 16px;
+	margin: 7px 0px;
+}
+.p2 {
+	color: rgba(0,0,0,0.8);
+}
+.p3,.p4 {
+	color: rgba(0,0,0,0.5);
+}
+.p4 {
+	font-size: 12px;
+}
+.p5 {
+	color: rgb(65,145,245);
+}
+#txtSend {
+	height: 180px;
+}
+#lblUploadP {
+	margin: 120px 20px 20px;
+	word-break: break-all;
+}
+#recvCode {
+	font-size: 35px;
+	font-family: "Microsoft Yahei",sans-serif;
+	font-weight: bold;
+	line-height: 30px;
+	letter-spacing: 10px;
+}
+.tip {
+	color: rgba(0,0,0,0.5);
+}
+.btn1 {
+	position: relative;
+	padding: 10px 35px;
+	border-radius: 20px;
+	text-decoration: none;
+	cursor: pointer;
+	border: none;
+	color: white;
+	font-size: small;
+	background-color: rgb(65,145,245);
+	transition: all 0.25s;
+}
+.btn1:hover {
+	box-shadow: rgba(65,145,245,0.35) 0px 5px 30px;
+}
+.btn1:active {
+	background-color: white;
+	color: rgb(65,145,245);
+}
+#btnDoneHistory {
+	top: 15px;
+}
+#btnDone0,#btnDone4,#btnSendFeed,#btnSendText {
+	top: 20px;
+}
+#btnDone3 {
+	top: 40px;
+	opacity: 0.5;
+	pointer-events: none;
+}
+#btnDone5 {
+	top: 160px;
+}
+#btnPay0 {
+	top: 20px;
+	opacity: 0.5;
+	pointer-events: none;
+}
+#btnLogin {
+	display: block;
+	margin: 20px auto 0;
+	position: static;
+}
+#btnSetPri {
+	top: 100px;
+}
+.link1 {
+	text-decoration: none;
+	color: rgb(65,145,245);
+	cursor: pointer;
+	margin: 0px 4px;
+	transition: all 0.25s;
+}
+.link1:link,.link1:visted {
+	color: rgb(65,145,245);
+}
+.link1:hover {
+	color: #A5C220;
+}
+.link1:active {
+	color: rgba(65,145,245,0.8);
+}
+footer .link1 {
+	margin: 0px;
+}
+.progressBar {
+	position: absolute;
+	left: 50%;
+	margin-left: -50px;
+	height: 3px;
+	border-radius: 2px;
+}
+#progressBarBg0,#progressBarBg1,#progressBarBg2 {
+	width: 100px;
+	background-color: rgba(0,0,0,0.1);
+}
+#progressBar0,#progressBar1,#progressBar2 {
+	width: 0;
+	background-color: rgb(65,145,245);
+	transition: all 0.25s;
+}
+.dlTipBox {
+	margin-top: 65px;
+	height: 20px;
+	overflow-y: hidden;
+}
+.dlTipBox p {
+	margin-top: 0px;
+	transition: all 0.25s;
+}
+#QRBox {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	left: calc(50% - 100px);
+	margin-top: 35px;
+}
+.btnBack {
+	position: absolute;
+	left: 60px;
+	border-right: 3px solid rgba(0,0,0,0.35);
+	border-top: 3px solid rgba(0,0,0,0.35);
+	height: 15px;
+	width: 15px;
+	top: 15px;
+	transform: rotate(225deg);
+	cursor: pointer;
+	transition: all 0.25s;
+}
+.btnBack:hover {
+	border-right: 3px solid rgb(65,145,245);
+	border-top: 3px solid rgb(65,145,245);
+}
+.btnBack:active {
+	border-right: 3px solid rgba(65,145,245,0.5);
+	border-top: 3px solid rgba(65,145,245,0.5);
+}
+.inputCode {
+	position: relative;
+	width: 200px;
+	outline: none;
+	border: none;
+	border-bottom: 2px solid rgba(0,0,0,0.1);
+	border-radius: 0px;
+	padding:15px;
+	padding-left: 25px;
+	margin-bottom: 35px;
+	color: rgb(65,145,245);
+	font-size: 35px;
+	letter-spacing: 10px;
+	text-align: center;
+	transition: all 0.25s;
+}
+.inputCode:hover {
+	border-bottom: 2px solid rgb(65,145,245);
+}
+.inputCode:focus {
+	border-bottom: 2px solid rgb(65,145,245);
+}
+.popUpBox {
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	transition: all 0.25s;
+}
+.slideInFromLeft {
+	position: absolute;
+	width: 100%;
+	left: -500px;
+	background-color: white;
+	transition: all 0.25s;
+}
+.slideInFromRight {
+	position: absolute;
+	width: 100%;
+	left: 500px;
+	background-color: white;
+	transition: all 0.25s;
+}
+.fileList {
+	width: calc(100% - 80px);
+	height: 200px;
+	margin: 20px 40px;
+	left: 0%;
+	overflow-y: scroll;
+	padding: 0px;
+	text-align: left;
+}
+.fileList a {
+	color: black;
+	display: block;
+	padding: 10px 15px;
+	background-color: white;
+	text-decoration: none;
+	transition: all 0.25s;
+	cursor: pointer;
+}
+.fileList a:nth-child(2n+1){
+	background-color: rgba(0,0,0,0.03);
+}
+.fileList a:hover {
+	color: rgb(65,145,245);
+}
+.fileList a:active {
+	color: #A5C220;
+}
+#selectedFileList {
+	height: 135px;
+	margin-bottom: 15px;
+}
+.tableUploadSettings {
+	margin: 0 auto 15px;
+	width: 85%;
+}
+.tableUploadSettings label{
+	display: block;
+	padding: 0px 5px;
+	text-align: left;
+}
+.tableUploadSettings input{
+	font-size: small;
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: 5px;
+	display: block;
+	padding: 5px 10px;
+	width: calc(100% - 20px);
+	transition: all 0.25s;
+}
+.tableUploadSettings input:hover {
+	border: 1px solid rgb(65,145,245);
+}
+.tableUploadSettings input:focus {
+	border: 1px solid rgb(65,145,245);
+}
+.line {
+	position: absolute;
+	width: 60%;
+	height: 1px;
+	left: 20%;
+	margin-top: -10px;
+	background-color: rgba(0,0,0,0.1);
+}
+#historyList {
+	position: relative;
+	width: 60%;
+	height: 200px;
+	left: 20%;
+	margin-top: -10px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+.historyItem {
+	position: relative;
+	display: block;
+	width: 100%;
+	left: 0%;
+	padding-top: 10px;
+	padding-bottom: 7.5px;
+	border-bottom: solid 1px rgba(0,0,0,0.1);
+	text-align: left;
+	font-family: "Microsoft Yahei",sans-serif;
+	font-weight: bold;
+}
+.historyItem a {
+	color: black;
+	text-decoration: none;
+}
+.historyItem p {
+	font-size: 10px;
+	line-height: 0px;
+	font-weight: normal;
+	color: rgba(0,0,0,0.5);
+}
+.historyItem span {
+	cursor: pointer;
+}
+.placeholder {
+	color: rgba(0,0,0,0.3);
+}
+.btnDel {
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	top: 50%;
+	right: 12px;
+	margin-top: -5px;
+}
+.btnDel::before, .btnDel::after {
+	content: '';
+	position: absolute;
+	height: 1px;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	margin-top: -1px;
+	background-color: rgb(200,200,200);;
+	transition: all 0.25s;
+}
+.btnDel::before {
+	transform: rotate(45deg);
+}
+.btnDel::after {
+	transform: rotate(-45deg);
+}
+.btnDel:hover::before,.btnDel:hover::after {
+	background-color: rgb(65,145,245);
+}
+.btnDel:active::before,.btnDel:active::after {
+	background-color: rgba(65,145,245,0.5);
+}
+.popRecvCode {
+	position: absolute;
+	top: calc(50% - 66px);
+	padding: 20px;
+	padding-right: 10px;
+	background-color: white;
+
+	text-align: center;
+	font-size: 35px;
+	font-family: "Microsoft Yahei",sans-serif;
+	font-weight: bold;
+	line-height: 30px;
+	letter-spacing: 10px;
+
+	border-radius: 20px;
+	overflow: hidden;
+	box-shadow: rgba(0,0,0,0.1) 0px 10px 20px;
+	transition: all 0.5s;
+}
+.payPlans {
+	width: 70%;
+	width: max-content;
+	margin: 0 auto;
+	text-align: left;
+}
+#promotionText {
+	color: #A5C220;
+	margin-left: 4px;
+}
+.payItem {
+	position: relative;
+	display: inline-block;
+	margin: 0px 5px 10px;
+	min-width: 80px;
+	padding-bottom: 5px;
+	background-color: white;
+	border: solid 1px;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+.payItem {
+	color: rgb(65,145,245);
+	border-color: rgba(65,145,245,0.3);
+}
+.payItem:hover {
+	background-color: rgba(65,145,245,0.15);
+	border-color:rgba(65,145,245,0.15);
+}
+.payItem.selected:hover{
+	background-color: rgb(65,145,245);
+	border-color: rgb(65,145,245);
+}
+.payItem:active,.selected {
+	background-color: rgb(65,145,245);
+	border-color:rgb(65,145,245);
+	color: white;
+}
+.payItem:active .p2,.payItem:active > .p4,.payItem:active > .p5,.selected > .p2,.selected > .p4,.selected > .p5 {
+	color: white;
+}
+.p2.selected,.selected .pDel,.payItem:active .pDel {
+	color: rgba(255,255,255,0.5);
+}
+.payItem .p2,.payItem .p4,.payItem .p5 {
+	font-size: 15px;
+	line-height: 0px;
+	text-align: center;
+}
+.payItem .p2 {
+	font-family: "Microsoft Yahei",sans-serif;
+	font-weight: bold;
+	color: rgb(65,145,245);
+	margin: 13px 10px 18px;
+	transition: all 0.5s;
+}
+.selected .p2 {
+	color: white;
+}
+.payItem .p4 {
+	font-size: 10px;
+	transition: all 0.5s;
+}
+.payItem .p5 {
+	font-size: 12px;
+	padding-top: 3.5px;
+	transition: all 0.5s;
+}
+.pDel {
+	font-size: 10px;
+	color: rgba(0,0,0,0.35);
+	margin-left: 5px;
+	text-decoration: line-through;
+	transition: all 0.5s;
+}
+#accBox0 {
+	position: absolute;
+	width: 100%;
+	left: 0px;
+	transition: all 0.25s;
+}
+#accBox1 {
+	position: absolute;
+	width: 100%;
+	left: 500px;
+	transition: all 0.25s;
+}
+#accBox2 {
+	position: absolute;
+	width: 100%;
+	left: 1000px;
+	transition: all 0.25s;
+}
+#payQRC {
+	margin-top: -10px;
+}
+.input1 {
+	top: 45px;
+	display: block;
+	border: none;
+	width: 55%;
+	padding: 10px 2.5%;
+	margin: 15px auto;
+	text-align: center;
+	font-size: small;
+	color: rgba(0,0,0,0.8);
+	background-color: rgba(0,0,0,0.05);
+	border-radius: 50px;
+	transition: all 0.5s;
+}
+.input1:hover,textarea:hover {
+	background-color: rgba(0,0,0,0.1);
+}
+.input1:focus {
+	background-color: rgba(0,0,0,0.15);
+}
+textarea:focus {
+	background-color: white;
+	border-color: rgb(65,145,245);
+}
+#inputPriExpDate {
+	width: 55.5%;
+	padding-left: 2.5%;
+	padding-right: 2%;
+}
+.btnClose {
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	right: 50px;
+	cursor: pointer;
+}
+.btnClose::before, .btnClose::after {
+	content: '';
+	position: absolute;
+	height: 2px;
+	width: 100%;
+	top: 50%;
+	left: 0;
+	margin-top: -1px;
+	background-color: rgb(180,180,180);
+	transition: all 0.25s;
+}
+.btnClose::before {
+	transform: rotate(45deg);
+}
+.btnClose::after {
+	transform: rotate(-45deg);
+}
+.btnClose:hover::before,.btnClose:hover::after {
+	background-color: rgb(65,145,245);
+}
+.btnClose:active::before,.btnClose:active::after {
+	background-color: rgba(65,145,245,0.5);
+}
+.contentLeftAligned {
+	margin: 20px auto;
+	text-align: left;
+	width: 80%;
+	width: max-content;
+}
+footer {
+	position: absolute;
+	bottom: 18px;
+	font-size: 12px;
+	line-height: 16px;
+	color: rgba(0,0,0,0.35);
+}
+.login {
+	background-color: transparent;
+	height: auto;
+	margin-top: 30px;
+}
+.login .p4{
+	margin-top: 20px;
+	text-align: center;
+}
+.loginLogo {
+	width: 250px;
+	height: 60px;
+	left: 50%;
+	margin: 0 auto;
+	top: 30px;
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-image: url(https://cdn.jsdelivr.net/gh/rthsoftware/airportal/images/loginLogo.png);
+}
+textarea {
+	position: relative;
+	left: 10%;
+	top: 0px;
+	display: block;
+	border: 1px solid transparent;
+	width: 75%;
+	height: 150px;
+	padding: 10px 2.5%;
+	margin-top: 10px;
+	text-align: center;
+	font-size: small;
+	font-family: PingFangSC-Light,"Microsoft Yahei Light","Microsoft Yahei",Helvetica,sans-serif;
+	color: rgba(0,0,0,0.8);
+	background-color: rgba(0,0,0,0.05);
+	border-radius: 10px;
+	resize: none;
+	transition: all 0.5s;
+}
+.contentBox {
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: 10px;
+	cursor: text;
+	padding: 10px 2.5%;
+	position: relative;
+	height: 180px;
+	margin: 0px 10%;
+	text-align: left;
+	overflow-y: scroll;
+	-webkit-user-select: text;
+	user-select: text;
+}
+.contentBox a {
+	color: rgb(65,145,245);
+}
+.contentBox1 {
+	position: relative;
+	width: 60%;
+	left: 20%;
+	margin-top: 80px;
+}
+.txtRed {
+	color: red;
+}
+.btnBox {
+	font-size: 12px;
+	position: relative;
+	top: 38px;
+}
+.cbox {
+	-webkit-appearance: none;
+	width: 16px !important;
+	height: 16px !important;
+	vertical-align: middle;
+	background: url(https://cdn.jsdelivr.net/gh/rthsoftware/airportal/images/cboxOutline.png) no-repeat;
+	background-size: contain;
+}
+.cbox:hover {
+	background-image: url(https://cdn.jsdelivr.net/gh/rthsoftware/airportal/images/cboxOutlineH.png);
+}
+.cbox:checked {
+	background-image: url(https://cdn.jsdelivr.net/gh/rthsoftware/airportal/images/cboxChecked.png);
+}
+.notificationBar {
+	position: fixed;
+	bottom: -50px;
+	width: 100%;
+	height: 26px;
+	color: rgba(255,255,255,0.8);
+	background-color: rgb(65,145,245);
+	text-align: center;
+	font-size: small;
+	padding-top: 8px;
+	transition: all 0.25s;
+}
+.popup-menu {
+	background-color: white;
+	border-radius: 30px;
+	box-shadow: rgba(0,0,0,0.1) 0px 5px 35px;
+	color: rgba(0,0,0,0.6);
+	cursor: default;
+	font-size: 14px;
+	opacity: 0;
+	padding: 0 20px;
+	position: fixed;
+	transition: all .25s;
+	white-space: nowrap;
+	z-index: 15;
+}
+.popup-menu span {
+	display: inline-block;
+	line-height: 20px;
+	padding: 10px;
+	transition: all .25s;
+}
+.popup-menu span:hover {
+	background-color: rgb(65,145,245);
+	color: white;
+}
+.popup-menu span:active {
+	color: rgba(255,255,255,0.5);
+}
+#footerL {
+	text-align: left;
+	left: 30px;
+}
+#footerR {
+	right: 30px;
+	text-align: right;
+}
+input[type="file"] {
+	display: none;
+}
+
+@media screen and (max-width:500px){
+	.btnMain {font-size: small;}
+	#menuIcon {top: 20px;margin-left: -45px;}
+	.tick::before {top: 1px;}
+	.popUp {width: 80%;margin-left: -40%;}
+	.btnBack {top: -5px;left: 35px;}
+	.btnClose {top: -10px;right: 30px;}
+	#popFeedback .btnClose,#popLogin .btnClose {top: 30px;}
+	.p1 {font-size: 16px;}
+	.p3 {font-size: 12px;}
+	.contentBox1 {width: 80%; left: 10%;}
+	.fileList {margin: 20px; width: calc(100% - 40px);}
+	.payPlans,#historyList,.line {width: 80%;left: 10%;}
+	.payPlans {height: 180px;overflow-y: scroll;}
+	.payItem {min-width: 70px;margin: 0px 2.5px 10px;}
+	#footerL {bottom: auto;top: 20px;}
+}
+@media screen and (max-width:400px){
+	.input1 {width: 75%;}
+}
